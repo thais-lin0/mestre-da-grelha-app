@@ -13,11 +13,11 @@ export const AppPreview = () => {
     <section className="py-20 md:py-32 bg-secondary/30 relative overflow-hidden">
       <div className="container px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* 3 Columns of App Screens */}
-            <div className="relative animate-fade-in">
+            <div className="relative animate-fade-in lg:order-1 order-2">
               <div className="absolute inset-0 bg-fire-gradient opacity-20 blur-3xl"></div>
-              <div className="relative z-10 grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+              <div className="relative z-10 grid grid-cols-3 gap-3 md:gap-4">
                 {appScreens.map((screen, index) => (
                   <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                     <img
@@ -31,7 +31,7 @@ export const AppPreview = () => {
             </div>
 
             {/* Content */}
-            <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <div className="space-y-6 animate-fade-in-up lg:order-2 order-1" style={{ animationDelay: '0.2s' }}>
               <h2 className="text-4xl md:text-5xl font-bold leading-tight">
                 Seu churrasco{" "}
                 <span className="bg-fire-gradient bg-clip-text text-transparent">
