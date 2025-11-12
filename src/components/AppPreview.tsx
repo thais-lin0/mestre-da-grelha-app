@@ -1,19 +1,44 @@
-import appMockup from "@/assets/app-mockup.png";
+import appScreen1 from "@/assets/app-screen-1.jpg";
+import appScreen2 from "@/assets/app-screen-2.jpg";
+import appScreen3 from "@/assets/app-screen-3.jpg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export const AppPreview = () => {
+  const appScreens = [
+    { src: appScreen1, alt: "Calculadora de Churrasco - Planeje quantidades perfeitas" },
+    { src: appScreen2, alt: "Mestre da Grelha - Assistente IA para churrasco" },
+    { src: appScreen3, alt: "Guia de Cortes - Receitas e técnicas profissionais" },
+  ];
+
   return (
     <section className="py-20 md:py-32 bg-secondary/30 relative overflow-hidden">
       <div className="container px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Image */}
+            {/* Carousel */}
             <div className="relative animate-fade-in">
               <div className="absolute inset-0 bg-fire-gradient opacity-20 blur-3xl"></div>
-              <img
-                src={appMockup}
-                alt="Mestre do Churrasco App Preview"
-                className="relative z-10 mx-auto max-w-sm w-full drop-shadow-2xl"
-              />
+              <Carousel className="relative z-10 mx-auto max-w-sm w-full">
+                <CarouselContent>
+                  {appScreens.map((screen, index) => (
+                    <CarouselItem key={index}>
+                      <img
+                        src={screen.src}
+                        alt={screen.alt}
+                        className="w-full h-auto drop-shadow-2xl rounded-2xl"
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-2" />
+                <CarouselNext className="right-2" />
+              </Carousel>
             </div>
 
             {/* Content */}
