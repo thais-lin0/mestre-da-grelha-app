@@ -1,12 +1,26 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Hero } from "@/components/Hero";
+import { Benefits } from "@/components/Benefits";
+import { AppPreview } from "@/components/AppPreview";
+import { SignupForm } from "@/components/SignupForm";
+import { WhyDifferent } from "@/components/WhyDifferent";
+import { FinalCTA } from "@/components/FinalCTA";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
+  const scrollToSignup = () => {
+    const signupSection = document.getElementById('signup');
+    signupSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background text-foreground">
+      <Hero onCTAClick={scrollToSignup} />
+      <Benefits />
+      <AppPreview />
+      <WhyDifferent />
+      <SignupForm />
+      <FinalCTA onCTAClick={scrollToSignup} />
+      <Footer />
     </div>
   );
 };
