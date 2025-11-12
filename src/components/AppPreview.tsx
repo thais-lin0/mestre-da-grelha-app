@@ -1,13 +1,6 @@
 import appScreen1 from "@/assets/app-screen-1.jpg";
 import appScreen2 from "@/assets/app-screen-2.jpg";
 import appScreen3 from "@/assets/app-screen-3.jpg";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 export const AppPreview = () => {
   const appScreens = [
@@ -21,24 +14,20 @@ export const AppPreview = () => {
       <div className="container px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Carousel */}
+            {/* 3 Columns of App Screens */}
             <div className="relative animate-fade-in">
               <div className="absolute inset-0 bg-fire-gradient opacity-20 blur-3xl"></div>
-              <Carousel className="relative z-10 mx-auto max-w-sm w-full">
-                <CarouselContent>
-                  {appScreens.map((screen, index) => (
-                    <CarouselItem key={index}>
-                      <img
-                        src={screen.src}
-                        alt={screen.alt}
-                        className="w-full h-auto drop-shadow-2xl rounded-2xl"
-                      />
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="left-2" />
-                <CarouselNext className="right-2" />
-              </Carousel>
+              <div className="relative z-10 grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+                {appScreens.map((screen, index) => (
+                  <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <img
+                      src={screen.src}
+                      alt={screen.alt}
+                      className="w-full h-auto drop-shadow-2xl rounded-xl hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Content */}
