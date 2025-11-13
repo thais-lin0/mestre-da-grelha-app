@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm as useFormSpree, ValidationError } from "@formspree/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,13 +8,23 @@ import { Mail, User, Flame } from "lucide-react";
 export const SignupForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [state, formspreeSubmit] = useFormSpree("xldadgyq");
+  const [state, handleSubmit] = useFormSpree("xldadgyq");
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (state.succeeded) {
+      toast({
+        title: "🔥 Bem-vindo à lista VIP!",
+        description: "Cadastro realizado com sucesso! Em breve você receberá novidades exclusivas sobre o app.",
+      });
+      setName("");
+      setEmail("");
+    }
+  }, [state.succeeded, toast]);
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (!name.trim() || !email.trim()) {
+      e.preventDefault();
       toast({
         title: "Campos obrigatórios",
         description: "Por favor, preencha todos os campos.",
@@ -22,23 +32,7 @@ export const SignupForm = () => {
       });
       return;
     }
-
-    const result = await formspreeSubmit(e);
-
-    if (result?.response?.ok) {
-      toast({
-        title: "🔥 Sucesso!",
-        description: "Você está na lista VIP! Prepare-se para virar o mestre da grelha.",
-      });
-      setName("");
-      setEmail("");
-    } else if (result?.response?.status) {
-      toast({
-        title: "Erro ao enviar",
-        description: "Tente novamente em instantes ou fale com nosso suporte.",
-        variant: "destructive",
-      });
-    }
+    handleSubmit(e);
   };
 
   return (
@@ -69,7 +63,7 @@ export const SignupForm = () => {
           </div>
 
           <form 
-            onSubmit={handleSubmit} 
+            onSubmit={onSubmit} 
             className="space-y-4 p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border shadow-xl animate-fade-in-up"
             style={{ animationDelay: '0.2s' }}
           >
@@ -137,12 +131,6 @@ export const SignupForm = () => {
               Ao se cadastrar, você concorda em receber novidades sobre o app. 
               Sem spam, prometemos! 🔥
             </p>
-
-            {state.succeeded && (
-              <p className="text-center text-sm font-medium text-primary">
-                Obrigado por se cadastrar! Em breve entraremos em contato.
-              </p>
-            )}
           </form>
         </div>
       </div>
