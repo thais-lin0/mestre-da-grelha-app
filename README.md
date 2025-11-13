@@ -1,73 +1,29 @@
-# Welcome to your Lovable project
+# Mestre do Churrasco
 
-## Project info
+Landing page do aplicativo Mestre do Churrasco, desenvolvido com foco em captar interessados para o lançamento do produto.
 
-**URL**: https://lovable.dev/projects/8d80b9c1-4652-424f-8931-a00d593f3e66
+## Tecnologias
 
-## How can I edit this code?
+- Vite + React + TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Formspree para gerenciamento do formulário de interesse
 
-There are several ways of editing your application.
+## Começando
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/8d80b9c1-4652-424f-8931-a00d593f3e66) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+git clone <REPO_URL>
+cd mestre-da-grelha-app
+npm install
+npm run dev -- --host
 ```
 
-**Edit a file directly in GitHub**
+A aplicação ficará disponível em `http://localhost:5173/`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Deploy
 
-**Use GitHub Codespaces**
+O projeto pode ser publicado em qualquer serviço compatível com aplicações Vite (Vercel, Netlify, Render, dentre outros). Rode `npm run build` para gerar os arquivos de produção.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Licença
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8d80b9c1-4652-424f-8931-a00d593f3e66) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Este projeto é de uso interno da equipe Mestre do Churrasco. Entre em contato com o time para obter mais informações sobre direitos de uso.

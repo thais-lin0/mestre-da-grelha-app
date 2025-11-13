@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useForm as useFormSpree, ValidationError } from "@formspree/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -7,12 +8,12 @@ import { Mail, User, Flame } from "lucide-react";
 export const SignupForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [state, formspreeSubmit] = useFormSpree("xldadgyq");
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!name.trim() || !email.trim()) {
       toast({
         title: "Campos obrigatórios",
@@ -22,19 +23,22 @@ export const SignupForm = () => {
       return;
     }
 
-    setLoading(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "🔥 Sucesso!",
-      description: "Você está na lista VIP! Prepare-se para virar o mestre da grelha.",
-    });
-    
-    setName("");
-    setEmail("");
-    setLoading(false);
+    const result = await formspreeSubmit(e);
+
+    if (result?.response?.ok) {
+      toast({
+        title: "🔥 Sucesso!",
+        description: "Você está na lista VIP! Prepare-se para virar o mestre da grelha.",
+      });
+      setName("");
+      setEmail("");
+    } else if (result?.response?.status) {
+      toast({
+        title: "Erro ao enviar",
+        description: "Tente novamente em instantes ou fale com nosso suporte.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -77,10 +81,17 @@ export const SignupForm = () => {
               <Input
                 id="name"
                 type="text"
+                name="name"
                 placeholder="Seu nome"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="bg-background border-border focus:border-primary"
+              />
+              <ValidationError
+                prefix="Nome"
+                field="name"
+                errors={state.errors}
+                className="text-sm text-destructive"
               />
             </div>
 
@@ -92,20 +103,27 @@ export const SignupForm = () => {
               <Input
                 id="email"
                 type="email"
+                name="email"
                 placeholder="seu@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-background border-border focus:border-primary"
+              />
+              <ValidationError
+                prefix="Email"
+                field="email"
+                errors={state.errors}
+                className="text-sm text-destructive"
               />
             </div>
 
             <Button 
               type="submit" 
               size="lg" 
-              disabled={loading}
+              disabled={state.submitting}
               className="w-full bg-fire-gradient hover:shadow-glow-orange transition-all duration-300 font-semibold"
             >
-              {loading ? (
+              {state.submitting ? (
                 "Cadastrando..."
               ) : (
                 <>
@@ -119,6 +137,12 @@ export const SignupForm = () => {
               Ao se cadastrar, você concorda em receber novidades sobre o app. 
               Sem spam, prometemos! 🔥
             </p>
+
+            {state.succeeded && (
+              <p className="text-center text-sm font-medium text-primary">
+                Obrigado por se cadastrar! Em breve entraremos em contato.
+              </p>
+            )}
           </form>
         </div>
       </div>
