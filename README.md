@@ -1,13 +1,26 @@
-# Mestre do Churrasco
+# 🔥 Mestre do Churrasco
 
-Landing page do aplicativo Mestre do Churrasco, desenvolvido com foco em captar interessados para o lançamento do produto.
+Landing page do aplicativo **Mestre do Churrasco** — o app que ensina, planeja e guia o churrasco perfeito com inteligência artificial.
+
+Desenvolvida para captar interessados na lista VIP de pré-lançamento.
 
 ## Tecnologias
 
-- Vite + React + TypeScript
-- Tailwind CSS
-- shadcn/ui
-- Formspree para gerenciamento do formulário de interesse
+- **Vite 5** + **React 18** + **TypeScript**
+- **Tailwind CSS 3** com design system customizado (tema dark, gradientes de fogo)
+- **shadcn/ui** (componentes Radix)
+- **Formspree** para coleta de leads
+- **Lucide React** para ícones
+
+## Funcionalidades
+
+- Header fixo com navegação por seções e menu mobile responsivo
+- Hero com background image e CTA
+- Seções de benefícios, preview do app e diferenciais
+- Formulário de cadastro integrado com Formspree
+- Animações por scroll (Intersection Observer)
+- Design totalmente responsivo
+- Tema dark com gradientes e efeitos de glow
 
 ## Começando
 
@@ -15,14 +28,42 @@ Landing page do aplicativo Mestre do Churrasco, desenvolvido com foco em captar 
 git clone <REPO_URL>
 cd mestre-da-grelha-app
 npm install
-npm run dev -- --host
+npm run dev
 ```
 
-A aplicação ficará disponível em `http://localhost:5173/`.
+A aplicação ficará disponível em `http://localhost:8080/`.
 
-## Deploy
+## Build de Produção
 
-O projeto pode ser publicado em qualquer serviço compatível com aplicações Vite (Vercel, Netlify, Render, dentre outros). Rode `npm run build` para gerar os arquivos de produção.
+```bash
+npm run build
+```
+
+Os arquivos serão gerados na pasta `dist/`. Compatível com Vercel, Netlify, Render e qualquer serviço que suporte apps Vite.
+
+## Estrutura do Projeto
+
+```
+src/
+├── assets/          # Imagens (hero, screenshots do app)
+├── components/      # Componentes da landing page
+│   ├── ui/          # Componentes shadcn/ui
+│   ├── Header.tsx
+│   ├── Hero.tsx
+│   ├── Benefits.tsx
+│   ├── AppPreview.tsx
+│   ├── WhyDifferent.tsx
+│   ├── SignupForm.tsx
+│   ├── FinalCTA.tsx
+│   └── Footer.tsx
+├── hooks/           # Custom hooks (useScrollAnimation, use-toast)
+├── pages/           # Páginas (Index, NotFound)
+└── lib/             # Utilitários
+```
+
+## Criado com Kiro
+
+Este projeto foi desenvolvido com o auxílio do [Kiro](https://kiro.dev), ambiente de desenvolvimento com IA da AWS.
 
 ## Licença
 

@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { Header } from "@/components/Header";
 import { Benefits } from "@/components/Benefits";
 import { AppPreview } from "@/components/AppPreview";
 import { SignupForm } from "@/components/SignupForm";
@@ -14,6 +15,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Header />
       <Hero onCTAClick={scrollToSignup} />
       <Benefits />
       <AppPreview />

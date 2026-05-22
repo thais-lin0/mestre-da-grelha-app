@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Sparkles, Brain, MapPin } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const features = [
   {
@@ -20,10 +21,12 @@ const features = [
 ];
 
 export const WhyDifferent = () => {
+  const { ref, isVisible } = useScrollAnimation<HTMLElement>();
+
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-b from-background to-secondary/30">
+    <section id="why-different" ref={ref} className="py-20 md:py-32 bg-gradient-to-b from-background to-secondary/30">
       <div className="container px-4">
-        <div className="text-center space-y-4 mb-16 animate-fade-in-up">
+        <div className={`text-center space-y-4 mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl md:text-5xl font-bold max-w-4xl mx-auto leading-tight">
             Por que o{" "}
             <span className="bg-fire-gradient bg-clip-text text-transparent">
@@ -41,8 +44,8 @@ export const WhyDifferent = () => {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="p-8 bg-card/50 backdrop-blur-sm border-border text-center space-y-4 hover:border-primary/50 transition-all duration-300 hover:shadow-glow-red animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`p-8 bg-card/50 backdrop-blur-sm border-border text-center space-y-4 hover:border-primary/50 transition-all duration-500 hover:shadow-glow-red ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: `${index * 100 + 200}ms` }}
             >
               <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center">
                 <feature.icon className="w-8 h-8 text-primary" />

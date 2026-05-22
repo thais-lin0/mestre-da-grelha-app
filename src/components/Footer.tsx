@@ -13,6 +13,13 @@ export const Footer = () => {
             <span className="text-xl font-bold">Mestre do Churrasco</span>
           </div>
 
+          {/* Links */}
+          <nav className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground" aria-label="Links do rodapé">
+            <a href="#" className="hover:text-foreground transition-colors">Política de Privacidade</a>
+            <a href="#" className="hover:text-foreground transition-colors">Termos de Uso</a>
+            <a href="mailto:contato@mestreochurrasco.com.br" className="hover:text-foreground transition-colors">Contato</a>
+          </nav>
+
           {/* Copyright */}
           <p className="text-sm text-muted-foreground text-center">
             © {new Date().getFullYear()} Mestre do Churrasco. Todos os direitos reservados.

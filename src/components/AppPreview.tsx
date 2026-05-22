@@ -1,8 +1,11 @@
 import appScreen1 from "@/assets/app-screen-1.jpg";
 import appScreen2 from "@/assets/app-screen-2.jpg";
 import appScreen3 from "@/assets/app-screen-3.jpg";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const AppPreview = () => {
+  const { ref, isVisible } = useScrollAnimation<HTMLElement>();
+
   const appScreens = [
     { src: appScreen1, alt: "Calculadora de Churrasco - Planeje quantidades perfeitas" },
     { src: appScreen2, alt: "Mestre da Grelha - Assistente IA para churrasco" },
@@ -10,16 +13,16 @@ export const AppPreview = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-secondary/30 relative overflow-hidden">
+    <section id="app-preview" ref={ref} className="py-20 md:py-32 bg-secondary/30 relative overflow-hidden">
       <div className="container px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* 3 Columns of App Screens */}
-            <div className="relative animate-fade-in lg:order-1 order-2">
+            <div className={`relative lg:order-1 order-2 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
               <div className="absolute inset-0 bg-fire-gradient opacity-20 blur-3xl"></div>
               <div className="relative z-10 grid grid-cols-3 gap-3 md:gap-4">
                 {appScreens.map((screen, index) => (
-                  <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div key={index} className="transition-all duration-500" style={{ transitionDelay: `${index * 100}ms` }}>
                     <img
                       src={screen.src}
                       alt={screen.alt}
@@ -31,7 +34,7 @@ export const AppPreview = () => {
             </div>
 
             {/* Content */}
-            <div className="space-y-6 animate-fade-in-up lg:order-2 order-1" style={{ animationDelay: '0.2s' }}>
+            <div className={`space-y-6 lg:order-2 order-1 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
               <h2 className="text-4xl md:text-5xl font-bold leading-tight">
                 Seu churrasco{" "}
                 <span className="bg-fire-gradient bg-clip-text text-transparent">

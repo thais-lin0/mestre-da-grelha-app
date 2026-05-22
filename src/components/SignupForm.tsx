@@ -128,8 +128,11 @@ export const SignupForm = () => {
             </Button>
 
             <p className="text-xs text-center text-muted-foreground pt-2">
-              Ao se cadastrar, você concorda em receber novidades sobre o app. 
-              Sem spam, prometemos! 🔥
+              Ao se cadastrar, você concorda com nossa{" "}
+              <a href="#" className="underline hover:text-foreground transition-colors">
+                Política de Privacidade
+              </a>
+              . Sem spam, prometemos! 🔥
             </p>
           </form>
         </div>

@@ -1,5 +1,6 @@
 import { Video, Calculator, ClipboardCheck, Users } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const benefits = [
   {
@@ -25,10 +26,12 @@ const benefits = [
 ];
 
 export const Benefits = () => {
+  const { ref, isVisible } = useScrollAnimation<HTMLElement>();
+
   return (
-    <section className="py-20 md:py-32 relative overflow-hidden">
+    <section id="benefits" ref={ref} className="py-20 md:py-32 relative overflow-hidden">
       <div className="container px-4">
-        <div className="text-center space-y-4 mb-16 animate-fade-in-up">
+        <div className={`text-center space-y-4 mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl md:text-5xl font-bold">
             Por que usar o{" "}
             <span className="bg-fire-gradient bg-clip-text text-transparent">
@@ -45,8 +48,8 @@ export const Benefits = () => {
           {benefits.map((benefit, index) => (
             <Card
               key={index}
-              className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow-red group animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-500 hover:shadow-glow-red group ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: `${index * 100 + 200}ms` }}
             >
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
